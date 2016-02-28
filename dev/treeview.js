@@ -121,6 +121,14 @@
         });
     }
     
+    function _fill( data ) {
+        $( data ).each(function (index, element) {
+            me.find('input[value="' + element + '"]')
+              .prop('checked', true)
+              .trigger('change');
+        });
+    }
+    
     var publicMethods = {
         init : function( options ) {
             me = this;
@@ -130,6 +138,10 @@
             debug = $.Logger(settings.debug, plugin);
             
             _init();
+            
+            debug.log('Ready');
+            
+            _fill ( options.data );
             
             return this;
         },

@@ -17,7 +17,7 @@
                         <li>Item 2.2
                             <ul>
                                 <li data-value="2.2.1">Item 2.2.1</li>
-                                <li data-value="2.2.2" data-checked="true">Item 2.2.2</li>
+                                <li data-value="2.2.2">Item 2.2.2</li>
                                 <li data-value="2.2.3">Item 2.2.3</li>
                             </ul>
                         </li>
@@ -27,22 +27,28 @@
                 <li>Item 3
                     <ul>
                         <li data-value="3.1">Item 3.1</li>
-                        <li data-checked="true" data-value="3.2">Item 3.2</li>
+                        <li data-value="3.2">Item 3.2</li>
                     </ul>
                 </li>
             </ul>
         </div>
+        <button type="button" id="show-values">Get Values</button>
+        <pre id="values"></pre>
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="../src/logger.min.js"></script>
-        <script src="../src/treeview.1.0.0.min.js"></script>
+        <script src="../dev/logger.js"></script>
+        <script src="../dev/treeview.js"></script>
         
         <script>
             $('#treeview-container').treeview({
-                debug : true
-            }).on('treeview.change', function(e) {
-                $(e).treeview('')
+                debug : true,
+                data : ['3.2', '2.2.3']
+            });
+            $('#show-values').on('click', function(){ 
+                $('#values').text(
+                    $('#treeview-container').treeview('selectedValues')
+                );
             });
         </script>
     </body>
